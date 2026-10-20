@@ -3082,8 +3082,11 @@ async function autoSyncWithGoogleSheets() {
 
 async function pullAllFromGas(showUserToast = true) {
   const url = appData.settings.GAS_URL;
-  if (!url) {
-    showToast('URL Google Apps Script belum disetel.', 'warning');
+  if (!url || !url.includes('/exec')) {
+    if (showUserToast) {
+      showToast('URL Web App Google Apps Script belum disetel. Buka editor Apps Script lalu Deploy > New deployment > Web app (.../exec).', 'warning');
+    }
+    setSyncIndicator(false, 'Mode Lokal');
     return;
   }
 
@@ -3095,12 +3098,11 @@ async function pullAllFromGas(showUserToast = true) {
     const result = await resp.json();
 
     if (result.status === 'success' && result.data) {
-      if (result.data.spreadsheetUrl) {
-        appData.settings.SPREADSHEET_URL = result.data.spreadsheetUrl;
-        localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, result.data.spreadsheetUrl);
-        const inputSs = document.getElementById('cfgSpreadsheetUrl');
-        if (inputSs) inputSs.value = result.data.spreadsheetUrl;
-      }
+      // Selalu kunci ke URL Spreadsheet Resmi Kelas 1 happy
+      appData.settings.SPREADSHEET_URL = OFFICIAL_SPREADSHEET_URL;
+      localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, OFFICIAL_SPREADSHEET_URL);
+      const inputSs = document.getElementById('cfgSpreadsheetUrl');
+      if (inputSs) inputSs.value = OFFICIAL_SPREADSHEET_URL;
       if (result.data.students && result.data.students.length > 0) {
         appData.students = result.data.students;
         saveToLocalStorage(STORAGE_KEYS.STUDENTS);
@@ -4775,10 +4777,10 @@ function initSettingsForm() {
   document.getElementById('cfgWeightSumatifLM').value = s.BOBOT_SUMATIF_LM || 40;
   document.getElementById('cfgWeightSAS').value = s.BOBOT_SUMATIF_SAS || 20;
   if (document.getElementById('cfgGasEditorUrl')) {
-    document.getElementById('cfgGasEditorUrl').value = s.APPS_SCRIPT_URL || defaultSettings.APPS_SCRIPT_URL;
+    document.getElementById('cfgGasEditorUrl').value = OFFICIAL_APPS_SCRIPT_URL;
   }
-  document.getElementById('cfgGasUrl').value = s.GAS_URL || defaultSettings.GAS_URL;
-  document.getElementById('cfgSpreadsheetUrl').value = s.SPREADSHEET_URL || defaultSettings.SPREADSHEET_URL;
+  document.getElementById('cfgGasUrl').value = s.GAS_URL || '';
+  document.getElementById('cfgSpreadsheetUrl').value = OFFICIAL_SPREADSHEET_URL;
 
   checkWeights();
 }
@@ -4822,12 +4824,14 @@ function saveSettingsForm() {
   appData.settings.BOBOT_SUMATIF_SAS = sas;
   appData.settings.GAS_URL = document.getElementById('cfgGasUrl').value.trim();
 
+  appData.settings.SPREADSHEET_URL = OFFICIAL_SPREADSHEET_URL;
+  appData.settings.APPS_SCRIPT_URL = OFFICIAL_APPS_SCRIPT_URL;
+  localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, OFFICIAL_SPREADSHEET_URL);
   if (document.getElementById('cfgSpreadsheetUrl')) {
-    const ssVal = document.getElementById('cfgSpreadsheetUrl').value.trim();
-    if (ssVal) {
-      appData.settings.SPREADSHEET_URL = ssVal;
-      localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, ssVal);
-    }
+    document.getElementById('cfgSpreadsheetUrl').value = OFFICIAL_SPREADSHEET_URL;
+  }
+  if (document.getElementById('cfgGasEditorUrl')) {
+    document.getElementById('cfgGasEditorUrl').value = OFFICIAL_APPS_SCRIPT_URL;
   }
 
   saveToLocalStorage(STORAGE_KEYS.SETTINGS);
@@ -4924,10 +4928,10 @@ async function testGasConnection() {
     const result = await resp.json();
 
     if (result.status === 'success') {
-      if (result.spreadsheetUrl) {
-        appData.settings.SPREADSHEET_URL = result.spreadsheetUrl;
-        localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, result.spreadsheetUrl);
-        document.getElementById('cfgSpreadsheetUrl').value = result.spreadsheetUrl;
+      appData.settings.SPREADSHEET_URL = OFFICIAL_SPREADSHEET_URL;
+      localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, OFFICIAL_SPREADSHEET_URL);
+      if (document.getElementById('cfgSpreadsheetUrl')) {
+        document.getElementById('cfgSpreadsheetUrl').value = OFFICIAL_SPREADSHEET_URL;
       }
       showToast('Sukses terhubung! Seluruh Sheet Google Sheets SDN Kesilir 02 telah aktif.', 'success');
       setSyncIndicator(true, 'Terhubung Sheets');
