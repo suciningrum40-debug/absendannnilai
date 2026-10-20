@@ -1472,12 +1472,12 @@
       </a>
 
       <div class="nav-label">Basis Data Cloud</div>
-      <a href="#" class="nav-item nav-highlight-sheet" id="menuDatabaseSheet" target="_blank" onclick="openGoogleSpreadsheet(event)" title="Buka Database Spreadsheet Google Sheets">
+      <a href="https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0" class="nav-item nav-highlight-sheet" id="menuDatabaseSheet" target="_blank" onclick="openGoogleSpreadsheet(event)" title="Buka Database Spreadsheet Google Sheets">
         <i class="fa-solid fa-file-excel" style="color: #10b981;"></i>
         <span>Database Spreadsheet</span>
         <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; margin-left: auto; color: #10b981;"></i>
       </a>
-      <a href="#" class="nav-item" id="menuAppsScript" target="_blank" onclick="openAppsScriptEditor(event)" title="Buka Google Apps Script Editor">
+      <a href="https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit" class="nav-item" id="menuAppsScript" target="_blank" onclick="openAppsScriptEditor(event)" title="Buka Google Apps Script Editor">
         <i class="fa-solid fa-code" style="color: #3b82f6;"></i>
         <span>Editor Apps Script</span>
         <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; margin-left: auto; color: #3b82f6;"></i>
@@ -1515,14 +1515,14 @@
 
       <div class="topbar-right">
         <!-- Direct Apps Script Button -->
-        <button class="btn btn-sm btn-secondary" id="btnOpenGasTopbar" onclick="openAppsScriptEditor(event)" title="Buka Editor Apps Script di Tab Baru">
+        <a href="https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit" target="_blank" class="btn btn-sm btn-secondary" id="btnOpenGasTopbar" title="Buka Editor Apps Script di Tab Baru" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
           <i class="fa-solid fa-code"></i> <span>Apps Script</span>
-        </button>
+        </a>
 
         <!-- Direct Google Sheets Button -->
-        <button class="btn btn-sm btn-success" id="btnOpenSheetTopbar" onclick="openGoogleSpreadsheet(event)" title="Buka Database Spreadsheet di Tab Baru">
+        <a href="https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0" target="_blank" class="btn btn-sm btn-success" id="btnOpenSheetTopbar" title="Buka Database Spreadsheet di Tab Baru" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
           <i class="fa-solid fa-table"></i> <span>Buka Google Sheets</span>
-        </button>
+        </a>
 
         <!-- Two-way Live Sync Button -->
         <button class="btn btn-sm btn-outline-primary" id="btnRefreshFromSheet" onclick="pullAllFromGas(true)" title="Tarik data terbaru dari Google Sheets">
@@ -1610,13 +1610,13 @@
             </div>
           </div>
 
-          <div class="action-card" onclick="openGoogleSpreadsheet(event)">
+          <a class="action-card" href="https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0" target="_blank" style="text-decoration: none;">
             <div class="action-icon" style="background: #ecfdf5; color: #059669;"><i class="fa-solid fa-table"></i></div>
             <div class="action-text">
               <h4>Database Spreadsheet</h4>
               <p>Buka Google Sheets langsung</p>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="form-row">
@@ -2484,10 +2484,10 @@
             <div class="form-group">
               <label class="form-label">Tautan Google Apps Script Project Editor:</label>
               <div style="display: flex; gap: 8px;">
-                <input type="url" id="cfgGasEditorUrl" class="form-control" placeholder="https://script.google.com/u/0/home/projects/.../edit" readonly>
-                <button class="btn btn-secondary" onclick="openAppsScriptEditor(event)" style="flex-shrink: 0;">
+                <input type="url" id="cfgGasEditorUrl" class="form-control" value="https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit" readonly>
+                <a href="https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit" target="_blank" class="btn btn-secondary" style="flex-shrink: 0; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                   <i class="fa-solid fa-code"></i> Buka Editor Apps Script
-                </button>
+                </a>
               </div>
               <small style="color: var(--text-muted); font-size: 12px; display: block; margin-top: 4px;">Proyek Apps Script aktif untuk backend database Kelas 1 happy.</small>
             </div>
@@ -2501,10 +2501,10 @@
             <div class="form-group">
               <label class="form-label">Tautan Langsung Google Spreadsheet:</label>
               <div style="display: flex; gap: 8px;">
-                <input type="url" id="cfgSpreadsheetUrl" class="form-control" placeholder="https://docs.google.com/spreadsheets/d/...">
-                <button class="btn btn-success" onclick="openGoogleSpreadsheet(event)" style="flex-shrink: 0;">
+                <input type="url" id="cfgSpreadsheetUrl" class="form-control" value="https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0" readonly>
+                <a href="https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0" target="_blank" class="btn btn-success" style="flex-shrink: 0; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Sheets
-                </button>
+                </a>
               </div>
             </div>
 
@@ -2746,10 +2746,10 @@
     <i class="fa-solid fa-chart-line"></i>
     <span>Nilai</span>
   </button>
-  <button type="button" class="bottom-nav-item" onclick="openDatabaseSheet()">
+  <a href="https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0" target="_blank" class="bottom-nav-item" style="text-decoration: none;">
     <i class="fa-solid fa-table text-success"></i>
     <span>Sheets</span>
-  </button>
+  </a>
 </nav>
 
 <!-- ==========================================================================
@@ -2770,6 +2770,10 @@ const STORAGE_KEYS = {
   SPREADSHEET_URL: 'siap_ss_url_v2'
 };
 
+// URL Resmi Google Spreadsheet & Google Apps Script
+const OFFICIAL_SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0';
+const OFFICIAL_APPS_SCRIPT_URL = 'https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit';
+
 // Default Official Settings SDN Kesilir 02 - Kelas 1 happy
 const defaultSettings = {
   NAMA_SEKOLAH: 'SD NEGERI KESILIR 02',
@@ -2784,9 +2788,9 @@ const defaultSettings = {
   BOBOT_FORMATIF: 40,
   BOBOT_SUMATIF_LM: 40,
   BOBOT_SUMATIF_SAS: 20,
-  GAS_URL: 'https://script.google.com/macros/s/AKfycbyYN-qOAfbFzYx0awMvf1i6XzxFiISzn7UORTqBOR8HPK0n-DpIgVEu1HJWuLv8nsw/exec',
-  SPREADSHEET_URL: 'https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0',
-  APPS_SCRIPT_URL: 'https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit'
+  GAS_URL: '',
+  SPREADSHEET_URL: OFFICIAL_SPREADSHEET_URL,
+  APPS_SCRIPT_URL: OFFICIAL_APPS_SCRIPT_URL
 };
 
 // 28 Realistic Grade 1 Students (Kelas 1 happy)
@@ -2938,30 +2942,24 @@ function initStorage() {
       appData.settings = { ...defaultSettings };
     }
 
-    // Force default GAS URL if empty
-    if (!appData.settings.GAS_URL) {
-      appData.settings.GAS_URL = defaultSettings.GAS_URL;
+    // Selalu pastikan tautan Google Sheets dan Apps Script terkunci ke URL resmi Kelas 1 happy
+    appData.settings.SPREADSHEET_URL = OFFICIAL_SPREADSHEET_URL;
+    appData.settings.APPS_SCRIPT_URL = OFFICIAL_APPS_SCRIPT_URL;
+    localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, OFFICIAL_SPREADSHEET_URL);
+
+    // Bersihkan GAS_URL lama jika masih menunjuk ke server lama atau bukan format /exec
+    if (appData.settings.GAS_URL) {
+      if (appData.settings.GAS_URL.includes('AKfycbyYN') ||
+          appData.settings.GAS_URL.includes('/home/projects/') ||
+          appData.settings.GAS_URL.includes('/edit') ||
+          !appData.settings.GAS_URL.includes('/exec')) {
+        appData.settings.GAS_URL = '';
+      }
     }
 
-    // Pastikan link spreadsheet dan nama kelas selalu sinkron dengan default terbaru
-    if (!appData.settings.SPREADSHEET_URL || appData.settings.SPREADSHEET_URL.trim() === '') {
-      appData.settings.SPREADSHEET_URL = defaultSettings.SPREADSHEET_URL;
-      localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, defaultSettings.SPREADSHEET_URL);
-    }
-    if (!appData.settings.APPS_SCRIPT_URL) {
-      appData.settings.APPS_SCRIPT_URL = defaultSettings.APPS_SCRIPT_URL;
-    }
-    if (!appData.settings.NAMA_KELAS || appData.settings.NAMA_KELAS === 'Kelas VI') {
-      appData.settings.NAMA_KELAS = defaultSettings.NAMA_KELAS;
-      saveToLocalStorage(STORAGE_KEYS.SETTINGS);
-    }
-
-    const storedSsUrl = localStorage.getItem(STORAGE_KEYS.SPREADSHEET_URL);
-    if (storedSsUrl && storedSsUrl.trim() !== '') {
-      appData.settings.SPREADSHEET_URL = storedSsUrl;
-    } else {
-      appData.settings.SPREADSHEET_URL = defaultSettings.SPREADSHEET_URL;
-    }
+    // Pastikan nama kelas tersimpan sebagai Kelas 1 happy
+    appData.settings.NAMA_KELAS = 'Kelas 1 happy';
+    saveToLocalStorage(STORAGE_KEYS.SETTINGS);
 
     const storedStudents = localStorage.getItem(STORAGE_KEYS.STUDENTS);
     if (storedStudents) {
@@ -3015,8 +3013,8 @@ function saveToLocalStorage(key) {
  */
 async function autoSyncWithGoogleSheets() {
   const url = appData.settings.GAS_URL;
-  if (!url) {
-    setSyncIndicator(false, 'Mode Lokal');
+  if (!url || !url.includes('/exec')) {
+    setSyncIndicator(false, 'Mode Lokal (Tersimpan)');
     return;
   }
 
@@ -3027,13 +3025,11 @@ async function autoSyncWithGoogleSheets() {
     const result = await resp.json();
 
     if (result.status === 'success' && result.data) {
-      // 1. Update Spreadsheet URL
-      if (result.data.spreadsheetUrl) {
-        appData.settings.SPREADSHEET_URL = result.data.spreadsheetUrl;
-        localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, result.data.spreadsheetUrl);
-        const inputSs = document.getElementById('cfgSpreadsheetUrl');
-        if (inputSs) inputSs.value = result.data.spreadsheetUrl;
-      }
+      // 1. Kunci permanen ke URL Spreadsheet Resmi Kelas 1 happy
+      appData.settings.SPREADSHEET_URL = OFFICIAL_SPREADSHEET_URL;
+      localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, OFFICIAL_SPREADSHEET_URL);
+      const inputSs = document.getElementById('cfgSpreadsheetUrl');
+      if (inputSs) inputSs.value = OFFICIAL_SPREADSHEET_URL;
 
       // 2. Update Students if sheet has data
       if (result.data.students && Array.isArray(result.data.students) && result.data.students.length > 0) {
@@ -3143,30 +3139,17 @@ async function pullAllFromGas(showUserToast = true) {
 
 function openGoogleSpreadsheet(e) {
   if (e) e.preventDefault();
-  const ssUrl = appData.settings.SPREADSHEET_URL;
-
-  if (ssUrl && ssUrl.trim() !== '') {
-    window.open(ssUrl, '_blank');
-  } else if (appData.settings.GAS_URL) {
-    // If not stored yet, open via GAS redirect
-    window.open(`${appData.settings.GAS_URL}?action=openSheet`, '_blank');
-  } else {
-    showToast('Tautan Google Spreadsheet belum tersedia. Silakan lakukan inisialisasi di menu Pengaturan.', 'warning');
-  }
+  window.open(OFFICIAL_SPREADSHEET_URL, '_blank');
 }
 
 function openDatabaseSheet(e) {
-  openGoogleSpreadsheet(e);
+  if (e) e.preventDefault();
+  window.open(OFFICIAL_SPREADSHEET_URL, '_blank');
 }
 
 function openAppsScriptEditor(e) {
   if (e) e.preventDefault();
-  const url = appData.settings.APPS_SCRIPT_URL || defaultSettings.APPS_SCRIPT_URL;
-  if (url && url.trim() !== '') {
-    window.open(url, '_blank');
-  } else {
-    showToast('Tautan Google Apps Script belum tersedia.', 'warning');
-  }
+  window.open(OFFICIAL_APPS_SCRIPT_URL, '_blank');
 }
 
 function setSyncIndicator(isOnline, text) {
