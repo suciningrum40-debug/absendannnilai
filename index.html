@@ -1682,9 +1682,6 @@
               <button class="btn btn-sm btn-secondary" onclick="window.print()">
                 <i class="fa-solid fa-print"></i> Cetak Daftar Siswa
               </button>
-              <button class="btn btn-sm btn-outline-primary" onclick="loadSampleStudentsPrompt()">
-                <i class="fa-solid fa-database"></i> Muat Data Contoh
-              </button>
             </div>
           </div>
 
@@ -2551,9 +2548,6 @@
               <button class="btn btn-secondary" onclick="exportBackupJson()">
                 <i class="fa-solid fa-download"></i> Cadangkan Semua Data (JSON)
               </button>
-              <button class="btn btn-outline-primary" onclick="loadSampleStudentsPrompt()">
-                <i class="fa-solid fa-database"></i> Muat 28 Data Contoh Siswa
-              </button>
               <button class="btn btn-danger" onclick="resetAllDataConfirm()">
                 <i class="fa-solid fa-trash-can"></i> Kosongkan Seluruh Data Lokal
               </button>
@@ -2793,37 +2787,8 @@ const defaultSettings = {
   APPS_SCRIPT_URL: OFFICIAL_APPS_SCRIPT_URL
 };
 
-// 28 Realistic Grade 1 Students (Kelas 1 happy)
-const sampleStudentsData = [
-  { id: 'std_01', noUrut: 1, nis: '26270101', nisn: '0191110001', namaLengkap: 'Aditya Pratama', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-03-14', orangTua: 'Bambang Supriyanto', alamat: 'Dusun Krajan, Kesilir, Wuluhan', status: 'Aktif' },
-  { id: 'std_02', noUrut: 2, nis: '26270102', nisn: '0191110002', namaLengkap: 'Aisyah Putri Rahmawati', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-07-21', orangTua: 'Rahmad Hidayat', alamat: 'Dusun Tegalbago, Kesilir, Wuluhan', status: 'Aktif' },
-  { id: 'std_03', noUrut: 3, nis: '26270103', nisn: '0191110003', namaLengkap: 'Alif Kurniawan', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-01-18', orangTua: 'Kuswanto', alamat: 'Dusun Krajan, Kesilir, Wuluhan', status: 'Aktif' },
-  { id: 'std_04', noUrut: 4, nis: '26270104', nisn: '0191110004', namaLengkap: 'Amanda Zahra Kirana', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-09-05', orangTua: 'Agus Salim', alamat: 'Dusun Sumberjo, Kesilir, Wuluhan', status: 'Aktif' },
-  { id: 'std_05', noUrut: 5, nis: '26270105', nisn: '0191110005', namaLengkap: 'Bayu Arya Nugraha', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-04-12', orangTua: 'Suratno', alamat: 'Dusun Krajan RT 02/03 Kesilir', status: 'Aktif' },
-  { id: 'std_06', noUrut: 6, nis: '26270106', nisn: '0191110006', namaLengkap: 'Bela Safitri', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-11-28', orangTua: 'Suryadi', alamat: 'Dusun Tegalbago, Kesilir', status: 'Aktif' },
-  { id: 'std_07', noUrut: 7, nis: '26270107', nisn: '0191110007', namaLengkap: 'Bintang Ramadhan', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-08-16', orangTua: 'Wahyu Hidayat', alamat: 'Dusun Sumberjo, Kesilir', status: 'Aktif' },
-  { id: 'std_08', noUrut: 8, nis: '26270108', nisn: '0191110008', namaLengkap: 'Cantika Dewi Lestari', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-02-09', orangTua: 'Mulyana', alamat: 'Dusun Krajan, Kesilir', status: 'Aktif' },
-  { id: 'std_09', noUrut: 9, nis: '26270109', nisn: '0191110009', namaLengkap: 'Daffa Rizky Maulana', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-06-19', orangTua: 'Iwan Setiawan', alamat: 'Dusun Tegalbago, Kesilir', status: 'Aktif' },
-  { id: 'std_10', noUrut: 10, nis: '26270110', nisn: '0191110010', namaLengkap: 'Devi Nur Anggraini', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-10-15', orangTua: 'Rudi Hartono', alamat: 'Dusun Sumberjo, Kesilir', status: 'Aktif' },
-  { id: 'std_11', noUrut: 11, nis: '26270111', nisn: '0191110011', namaLengkap: 'Dimas Setiawan', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-05-30', orangTua: 'Dadang Gunawan', alamat: 'Dusun Krajan, Kesilir', status: 'Aktif' },
-  { id: 'std_12', noUrut: 12, nis: '26270112', nisn: '0191110012', namaLengkap: 'Fadhil Ahmad Fauzi', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-12-03', orangTua: 'Ahmad Syarif', alamat: 'Dusun Tegalbago, Kesilir', status: 'Aktif' },
-  { id: 'std_13', noUrut: 13, nis: '26270113', nisn: '0191110013', namaLengkap: 'Farah Nadia Salsabila', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-03-25', orangTua: 'Dedi Kusnadi', alamat: 'Dusun Sumberjo, Kesilir', status: 'Aktif' },
-  { id: 'std_14', noUrut: 14, nis: '26270114', nisn: '0191110014', namaLengkap: 'Gilang Ramadhan', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-08-01', orangTua: 'Suhendar', alamat: 'Dusun Krajan, Kesilir', status: 'Aktif' },
-  { id: 'std_15', noUrut: 15, nis: '26270115', nisn: '0191110015', namaLengkap: 'Hana Khairunnisa', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-04-18', orangTua: 'Fauzi Rahman', alamat: 'Dusun Tegalbago, Kesilir', status: 'Aktif' },
-  { id: 'std_16', noUrut: 16, nis: '26270116', nisn: '0191110016', namaLengkap: 'Ilham Syahputra', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-09-12', orangTua: 'Syahrial', alamat: 'Dusun Sumberjo, Kesilir', status: 'Aktif' },
-  { id: 'std_17', noUrut: 17, nis: '26270117', nisn: '0191110017', namaLengkap: 'Intan Permatasari', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-01-08', orangTua: 'Budi Santoso', alamat: 'Dusun Krajan, Kesilir', status: 'Aktif' },
-  { id: 'std_18', noUrut: 18, nis: '26270118', nisn: '0191110018', namaLengkap: 'Kevin Marcelino', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-10-22', orangTua: 'Antonius Wijaya', alamat: 'Dusun Tegalbago, Kesilir', status: 'Aktif' },
-  { id: 'std_19', noUrut: 19, nis: '26270119', nisn: '0191110019', namaLengkap: 'Larasati Ayu Wardani', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-07-04', orangTua: 'Tri Wahyudi', alamat: 'Dusun Sumberjo, Kesilir', status: 'Aktif' },
-  { id: 'std_20', noUrut: 20, nis: '26270120', nisn: '0191110020', namaLengkap: 'Muhammad Fikri Al-Ghazali', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-02-14', orangTua: 'H. Mansyur', alamat: 'Dusun Krajan, Kesilir', status: 'Aktif' },
-  { id: 'std_21', noUrut: 21, nis: '26270121', nisn: '0191110021', namaLengkap: 'Nabila Syakira', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-11-11', orangTua: 'Joko Susilo', alamat: 'Dusun Tegalbago, Kesilir', status: 'Aktif' },
-  { id: 'std_22', noUrut: 22, nis: '26270122', nisn: '0191110022', namaLengkap: 'Rafi Alamsyah', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-06-29', orangTua: 'Alam Kurnia', alamat: 'Dusun Sumberjo, Kesilir', status: 'Aktif' },
-  { id: 'std_23', noUrut: 23, nis: '26270123', nisn: '0191110023', namaLengkap: 'Rania Putri Salsabila', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-08-30', orangTua: 'Hendrik', alamat: 'Dusun Krajan, Kesilir', status: 'Aktif' },
-  { id: 'std_24', noUrut: 24, nis: '26270124', nisn: '0191110024', namaLengkap: 'Revan Aditya', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-05-17', orangTua: 'Ade Supriatna', alamat: 'Dusun Tegalbago, Kesilir', status: 'Aktif' },
-  { id: 'std_25', noUrut: 25, nis: '26270125', nisn: '0191110025', namaLengkap: 'Salma Nur Azizah', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-09-24', orangTua: 'Nurhadi', alamat: 'Dusun Sumberjo, Kesilir', status: 'Aktif' },
-  { id: 'std_26', noUrut: 26, nis: '26270126', nisn: '0191110026', namaLengkap: 'Tegar Prasetyo', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-03-03', orangTua: 'Prasojo', alamat: 'Dusun Krajan, Kesilir', status: 'Aktif' },
-  { id: 'std_27', noUrut: 27, nis: '26270127', nisn: '0191110027', namaLengkap: 'Zahra Amelia', jenisKelamin: 'P', tempatLahir: 'Jember', tanggalLahir: '2019-12-19', orangTua: 'Amiruddin', alamat: 'Dusun Tegalbago, Kesilir', status: 'Aktif' },
-  { id: 'std_28', noUrut: 28, nis: '26270128', nisn: '0191110028', namaLengkap: 'Zikri Maulana', jenisKelamin: 'L', tempatLahir: 'Jember', tanggalLahir: '2019-04-05', orangTua: 'Lukman Hakim', alamat: 'Dusun Krajan, Kesilir', status: 'Aktif' }
-];
+// Tidak menggunakan data dummy. Data murni berasal dari input pengguna atau Google Sheets.
+const sampleStudentsData = [];
 
 let appData = {
   students: [],
@@ -2963,31 +2928,78 @@ function initStorage() {
 
     const storedStudents = localStorage.getItem(STORAGE_KEYS.STUDENTS);
     if (storedStudents) {
-      appData.students = JSON.parse(storedStudents);
+      try {
+        const parsed = JSON.parse(storedStudents);
+        // Bersihkan data dummy bawaan jika pernah tersimpan di browser
+        if (Array.isArray(parsed) && parsed.some(s => s.namaLengkap === 'Aditya Pratama' || s.id === 'std_01' || s.nisn === '0191110001')) {
+          appData.students = [];
+          localStorage.removeItem(STORAGE_KEYS.STUDENTS);
+        } else {
+          appData.students = parsed;
+        }
+      } catch (e) {
+        appData.students = [];
+      }
     } else {
-      appData.students = [...sampleStudentsData];
-      localStorage.setItem(STORAGE_KEYS.STUDENTS, JSON.stringify(appData.students));
+      appData.students = [];
     }
 
     const storedAttendance = localStorage.getItem(STORAGE_KEYS.ATTENDANCE);
     if (storedAttendance) {
-      appData.attendance = JSON.parse(storedAttendance);
+      try {
+        appData.attendance = JSON.parse(storedAttendance);
+        // Bersihkan key kosong atau rusak dari versi sebelumnya
+        if (appData.attendance && typeof appData.attendance === 'object') {
+          let hasCleaned = false;
+          Object.keys(appData.attendance).forEach(d => {
+            if (appData.attendance[d] && typeof appData.attendance[d] === 'object') {
+              if (appData.attendance[d][""] !== undefined || 
+                  appData.attendance[d]["-"] !== undefined || 
+                  appData.attendance[d]["undefined"] !== undefined || 
+                  appData.attendance[d]["null"] !== undefined) {
+                delete appData.attendance[d][""];
+                delete appData.attendance[d]["-"];
+                delete appData.attendance[d]["undefined"];
+                delete appData.attendance[d]["null"];
+                hasCleaned = true;
+              }
+            }
+          });
+          if (hasCleaned) saveToLocalStorage(STORAGE_KEYS.ATTENDANCE);
+        }
+      } catch (e) {
+        appData.attendance = {};
+      }
     } else {
-      seedSampleAttendance();
+      appData.attendance = {};
     }
 
     const storedGrades = localStorage.getItem(STORAGE_KEYS.GRADES);
     if (storedGrades) {
-      appData.grades = JSON.parse(storedGrades);
+      try {
+        appData.grades = JSON.parse(storedGrades);
+      } catch (e) {
+        appData.grades = {};
+      }
     } else {
-      seedSampleGrades();
+      appData.grades = {};
     }
 
     const storedArchives = localStorage.getItem(STORAGE_KEYS.ARCHIVES);
     if (storedArchives) {
-      appData.archives = JSON.parse(storedArchives);
+      try {
+        const parsedArc = JSON.parse(storedArchives);
+        if (Array.isArray(parsedArc) && parsedArc.some(a => a.fileId === 'arc_01' || a.fileId === 'arc_02')) {
+          appData.archives = [];
+          localStorage.removeItem(STORAGE_KEYS.ARCHIVES);
+        } else {
+          appData.archives = parsedArc;
+        }
+      } catch (e) {
+        appData.archives = [];
+      }
     } else {
-      seedSampleArchives();
+      appData.archives = [];
     }
   } catch (err) {
     console.error("Gagal membaca LocalStorage:", err);
@@ -3276,8 +3288,8 @@ function renderDashboard() {
   const dayRecords = appData.attendance[today] || {};
   let h = 0, s = 0, i = 0, a = 0;
 
-  appData.students.forEach(st => {
-    const rec = dayRecords[st.nisn];
+  appData.students.forEach((st, idx) => {
+    const rec = getStudentAttendanceRecord(dayRecords, st, idx);
     const status = rec ? rec.status : 'H';
     if (status === 'H') h++;
     else if (status === 'S') s++;
@@ -3304,9 +3316,9 @@ function renderDashboard() {
     if (dateObj.getDay() === 0) continue; // Skip Sunday
 
     if (appData.attendance[dStr]) {
-      appData.students.forEach(st => {
+      appData.students.forEach((st, idx) => {
         totalPossiblePresences++;
-        const rec = appData.attendance[dStr][st.nisn];
+        const rec = getStudentAttendanceRecord(appData.attendance[dStr], st, idx);
         if (rec && (rec.status === 'H' || rec.status === 'I')) totalActualPresences++;
       });
     }
@@ -3325,8 +3337,9 @@ function renderDashboard() {
     const gKey = `${subj}_${dynamic.academicYear}_${dynamic.semester}`;
     const data = appData.grades[gKey];
     if (data && data.sumatif) {
-      appData.students.forEach(st => {
-        if (data.sumatif[st.nisn] && data.sumatif[st.nisn]['LM1']) assessedCount++;
+      appData.students.forEach((st, idx) => {
+        const sKey = getStudentKey(st, idx);
+        if ((data.sumatif[sKey] && data.sumatif[sKey]['LM1']) || (st.nisn && data.sumatif[st.nisn] && data.sumatif[st.nisn]['LM1'])) assessedCount++;
       });
     }
   });
@@ -3345,12 +3358,12 @@ function renderDashboard() {
     tbody.innerHTML = '';
     const sliceStudents = appData.students.slice(0, 7);
     sliceStudents.forEach((st, idx) => {
-      const rec = dayRecords[st.nisn] || { status: 'H', ket: '' };
+      const rec = getStudentAttendanceRecord(dayRecords, st, idx);
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${idx + 1}</td>
         <td><strong>${escapeHtml(st.namaLengkap)}</strong></td>
-        <td><code>${st.nisn}</code></td>
+        <td><code>${escapeHtml(st.nisn || '-')}</code></td>
         <td>${getStatusBadgeHTML(rec.status)}</td>
         <td style="color: var(--text-muted); font-size: 12px;">${escapeHtml(rec.ket) || '-'}</td>
       `;
@@ -3624,16 +3637,6 @@ function processStudentImport() {
   }
 }
 
-function loadSampleStudentsPrompt() {
-  const className = appData.settings.NAMA_KELAS || 'Kelas 1 happy';
-  if (confirm(`Muat ulang 28 data contoh siswa ${className} SDN Kesilir 02?`)) {
-    appData.students = JSON.parse(JSON.stringify(sampleStudentsData));
-    saveToLocalStorage(STORAGE_KEYS.STUDENTS);
-    renderStudentTable();
-    renderDashboard();
-    showToast(`28 data siswa ${className} berhasil dimuat!`, 'success');
-  }
-}
 
 /**
  * ============================================================================
@@ -3663,16 +3666,86 @@ function onAttendanceDateChanged() {
   renderDailyAttendanceTable(dateStr);
 }
 
+function getStudentKey(st, idx) {
+  if (!st) return 'std_' + (idx !== undefined ? (idx + 1) : '0');
+  const nisn = st.nisn !== undefined && st.nisn !== null ? String(st.nisn).trim() : '';
+  if (nisn !== '' && nisn !== '-' && nisn !== 'undefined' && nisn !== 'null') {
+    return nisn;
+  }
+  const id = st.id !== undefined && st.id !== null ? String(st.id).trim() : '';
+  if (id !== '' && id !== '-' && id !== 'undefined' && id !== 'null') {
+    return id;
+  }
+  const nis = st.nis !== undefined && st.nis !== null ? String(st.nis).trim() : '';
+  if (nis !== '' && nis !== '-' && nis !== 'undefined' && nis !== 'null') {
+    return 'nis_' + nis;
+  }
+  const noUrut = st.noUrut || (idx !== undefined ? idx + 1 : '0');
+  const nameSlug = st.namaLengkap ? String(st.namaLengkap).trim().toLowerCase().replace(/\s+/g, '_') : 'std';
+  return 'no_' + noUrut + '_' + nameSlug;
+}
+
+function getStudentAttendanceRecord(dayRecords, st, idx) {
+  if (!dayRecords || typeof dayRecords !== 'object') return { status: 'H', ket: '' };
+
+  const primaryKey = getStudentKey(st, idx);
+  if (dayRecords[primaryKey] && typeof dayRecords[primaryKey] === 'object') {
+    return dayRecords[primaryKey];
+  }
+
+  const nisn = st && st.nisn ? String(st.nisn).trim() : '';
+  if (nisn && nisn !== '-' && dayRecords[nisn] && typeof dayRecords[nisn] === 'object') {
+    return dayRecords[nisn];
+  }
+
+  const id = st && st.id ? String(st.id).trim() : '';
+  if (id && dayRecords[id] && typeof dayRecords[id] === 'object') {
+    return dayRecords[id];
+  }
+
+  if (st && st.namaLengkap) {
+    const nameKey = 'nama_' + String(st.namaLengkap).trim().toLowerCase().replace(/\s+/g, '_');
+    if (dayRecords[nameKey] && typeof dayRecords[nameKey] === 'object') {
+      return dayRecords[nameKey];
+    }
+  }
+
+  const noUrut = st && (st.noUrut || (idx !== undefined ? idx + 1 : null));
+  if (noUrut && dayRecords['no_' + noUrut] && typeof dayRecords['no_' + noUrut] === 'object') {
+    return dayRecords['no_' + noUrut];
+  }
+
+  return { status: 'H', ket: '' };
+}
+
 function renderDailyAttendanceTable(dateStr) {
   const tbody = document.getElementById('dailyAttendanceTbody');
   if (!tbody) return;
 
   tbody.innerHTML = '';
+
+  if (appData.students.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 24px; color: var(--text-muted);"><i class="fa-solid fa-users-slash" style="font-size: 20px; display: block; margin-bottom: 8px;"></i>Belum ada data siswa. Tambahkan siswa di menu <strong>Data Siswa</strong> atau klik <strong>Tarik Data Sheets</strong> di bilah atas.</td></tr>`;
+    document.getElementById('countHadir').textContent = 'Hadir: 0';
+    document.getElementById('countSakit').textContent = 'Sakit: 0';
+    document.getElementById('countIzin').textContent = 'Izin: 0';
+    document.getElementById('countAlpa').textContent = 'Alpa: 0';
+    return;
+  }
+
   const dayRecords = appData.attendance[dateStr] || {};
+
+  // Hapus key kosong/rusak jika ada
+  delete dayRecords[""];
+  delete dayRecords["-"];
+  delete dayRecords["undefined"];
+  delete dayRecords["null"];
+
   let h = 0, s = 0, i = 0, a = 0;
 
   appData.students.forEach((st, idx) => {
-    const currentRec = dayRecords[st.nisn] || { status: 'H', ket: '' };
+    const sKey = getStudentKey(st, idx);
+    const currentRec = getStudentAttendanceRecord(dayRecords, st, idx);
     const curStatus = currentRec.status || 'H';
     const curKet = currentRec.ket || '';
 
@@ -3684,21 +3757,21 @@ function renderDailyAttendanceTable(dateStr) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td style="text-align: center;">${st.noUrut || (idx + 1)}</td>
-      <td><code>${st.nisn}</code></td>
+      <td><code>${escapeHtml(st.nisn || '-')}</code></td>
       <td><strong>${escapeHtml(st.namaLengkap)}</strong></td>
       <td style="text-align: center;">
-        <div class="attendance-pills" data-nisn="${st.nisn}">
-          <button type="button" class="attendance-btn ${curStatus === 'H' ? 'active h' : ''}" onclick="setStudentAttendance('${dateStr}', '${st.nisn}', 'H')">H</button>
-          <button type="button" class="attendance-btn ${curStatus === 'S' ? 'active s' : ''}" onclick="setStudentAttendance('${dateStr}', '${st.nisn}', 'S')">S</button>
-          <button type="button" class="attendance-btn ${curStatus === 'I' ? 'active i' : ''}" onclick="setStudentAttendance('${dateStr}', '${st.nisn}', 'I')">I</button>
-          <button type="button" class="attendance-btn ${curStatus === 'A' ? 'active a' : ''}" onclick="setStudentAttendance('${dateStr}', '${st.nisn}', 'A')">A</button>
+        <div class="attendance-pills" data-key="${escapeHtml(sKey)}">
+          <button type="button" class="attendance-btn ${curStatus === 'H' ? 'active h' : ''}" onclick="setStudentAttendance('${dateStr}', '${escapeHtml(sKey)}', 'H')">H</button>
+          <button type="button" class="attendance-btn ${curStatus === 'S' ? 'active s' : ''}" onclick="setStudentAttendance('${dateStr}', '${escapeHtml(sKey)}', 'S')">S</button>
+          <button type="button" class="attendance-btn ${curStatus === 'I' ? 'active i' : ''}" onclick="setStudentAttendance('${dateStr}', '${escapeHtml(sKey)}', 'I')">I</button>
+          <button type="button" class="attendance-btn ${curStatus === 'A' ? 'active a' : ''}" onclick="setStudentAttendance('${dateStr}', '${escapeHtml(sKey)}', 'A')">A</button>
         </div>
       </td>
       <td>
         <input type="text" class="form-control" style="padding: 4px 8px; font-size: 12px;" 
           placeholder="Alasan izin / sakit..." 
           value="${escapeHtml(curKet)}" 
-          onchange="updateStudentAttendanceKet('${dateStr}', '${st.nisn}', this.value)">
+          onchange="updateStudentAttendanceKet('${dateStr}', '${escapeHtml(sKey)}', this.value)">
       </td>
     `;
     tbody.appendChild(tr);
@@ -3710,19 +3783,33 @@ function renderDailyAttendanceTable(dateStr) {
   document.getElementById('countAlpa').textContent = `Alpa: ${a}`;
 }
 
-function setStudentAttendance(dateStr, nisn, status) {
+function setStudentAttendance(dateStr, studentKey, status) {
   if (!appData.attendance[dateStr]) appData.attendance[dateStr] = {};
-  const oldKet = appData.attendance[dateStr][nisn] ? appData.attendance[dateStr][nisn].ket : '';
-  appData.attendance[dateStr][nisn] = { status: status, ket: oldKet };
+
+  // Bersihkan key kosong
+  delete appData.attendance[dateStr][""];
+  delete appData.attendance[dateStr]["-"];
+  delete appData.attendance[dateStr]["undefined"];
+  delete appData.attendance[dateStr]["null"];
+
+  const oldRec = appData.attendance[dateStr][studentKey] || {};
+  appData.attendance[dateStr][studentKey] = { status: status, ket: oldRec.ket || '' };
+
   saveToLocalStorage(STORAGE_KEYS.ATTENDANCE);
   renderDailyAttendanceTable(dateStr);
   renderDashboard();
 }
 
-function updateStudentAttendanceKet(dateStr, nisn, ket) {
+function updateStudentAttendanceKet(dateStr, studentKey, ket) {
   if (!appData.attendance[dateStr]) appData.attendance[dateStr] = {};
-  const curStatus = appData.attendance[dateStr][nisn] ? appData.attendance[dateStr][nisn].status : 'H';
-  appData.attendance[dateStr][nisn] = { status: curStatus, ket: ket };
+
+  delete appData.attendance[dateStr][""];
+  delete appData.attendance[dateStr]["-"];
+  delete appData.attendance[dateStr]["undefined"];
+  delete appData.attendance[dateStr]["null"];
+
+  const curRec = appData.attendance[dateStr][studentKey] || { status: 'H' };
+  appData.attendance[dateStr][studentKey] = { status: curRec.status || 'H', ket: ket };
   saveToLocalStorage(STORAGE_KEYS.ATTENDANCE);
 }
 
@@ -3730,8 +3817,17 @@ function markAllPresent() {
   const dateStr = document.getElementById('dailyAttendanceDate').value;
   if (!appData.attendance[dateStr]) appData.attendance[dateStr] = {};
 
-  appData.students.forEach(st => {
-    appData.attendance[dateStr][st.nisn] = { status: 'H', ket: '' };
+  delete appData.attendance[dateStr][""];
+  delete appData.attendance[dateStr]["-"];
+  delete appData.attendance[dateStr]["undefined"];
+  delete appData.attendance[dateStr]["null"];
+
+  appData.students.forEach((st, idx) => {
+    const sKey = getStudentKey(st, idx);
+    appData.attendance[dateStr][sKey] = { status: 'H', ket: '' };
+    if (st.nisn && String(st.nisn).trim() !== '' && String(st.nisn).trim() !== '-') {
+      appData.attendance[dateStr][String(st.nisn).trim()] = { status: 'H', ket: '' };
+    }
   });
 
   saveToLocalStorage(STORAGE_KEYS.ATTENDANCE);
@@ -3744,19 +3840,22 @@ async function saveDailyAttendanceToBackend() {
   const dateStr = document.getElementById('dailyAttendanceDate').value;
   saveToLocalStorage(STORAGE_KEYS.ATTENDANCE);
 
-  if (!appData.settings.GAS_URL) {
-    showToast('Tersimpan di lokal! Masukkan URL Google Apps Script di Pengaturan untuk menyimpan ke Google Sheets.', 'info');
+  if (!appData.settings.GAS_URL || !appData.settings.GAS_URL.includes('/exec')) {
+    showToast('Tersimpan di lokal! Masukkan URL Web App Google Apps Script di Pengaturan untuk menyimpan ke Google Sheets.', 'info');
     return;
   }
 
   const dayRecords = appData.attendance[dateStr] || {};
-  const records = appData.students.map(st => {
-    const rec = dayRecords[st.nisn] || { status: 'H', ket: '' };
+  const records = appData.students.map((st, idx) => {
+    const rec = getStudentAttendanceRecord(dayRecords, st, idx);
     return {
-      nisn: st.nisn,
+      id: st.id || ('std_' + (st.noUrut || idx + 1)),
+      noUrut: st.noUrut || (idx + 1),
+      nis: st.nis || '',
+      nisn: st.nisn || '',
       namaSiswa: st.namaLengkap,
-      status: rec.status,
-      keterangan: rec.ket
+      status: rec.status || 'H',
+      keterangan: rec.ket || ''
     };
   });
 
@@ -3955,6 +4054,12 @@ function renderMonthlyRekapTable() {
   `;
 
   // 4. Render Baris Siswa & Kartu Siswa untuk HP
+  if (appData.students.length === 0) {
+    table.innerHTML = theadHTML + `<tbody><tr><td colspan="${daysInMonth + 7}" style="text-align: center; padding: 28px; color: var(--text-muted);"><i class="fa-solid fa-users-slash" style="font-size: 20px; display: block; margin-bottom: 8px;"></i>Belum ada data siswa untuk rekap bulanan. Tambahkan siswa di menu <strong>Data Siswa</strong> atau klik <strong>Tarik Data Sheets</strong>.</td></tr></tbody>`;
+    if (cardsCont) cardsCont.innerHTML = `<div style="text-align: center; padding: 20px; color: var(--text-muted);">Belum ada data siswa.</div>`;
+    return;
+  }
+
   let tbodyHTML = '<tbody>';
   let cardsHTML = '';
   const dailyClassTotals = new Array(daysInMonth + 1).fill(0);
@@ -3971,7 +4076,7 @@ function renderMonthlyRekapTable() {
       if (isSunday) {
         studentCellsHTML += `<td class="day-sun">-</td>`;
       } else {
-        const dayRecord = appData.attendance[dateStr] ? appData.attendance[dateStr][st.nisn] : null;
+        const dayRecord = appData.attendance[dateStr] ? getStudentAttendanceRecord(appData.attendance[dateStr], st, idx) : null;
         const status = dayRecord ? dayRecord.status : '';
 
         if (status === 'H') {
@@ -4000,7 +4105,7 @@ function renderMonthlyRekapTable() {
     tbodyHTML += `
       <tr>
         <td style="text-align: center;">${st.noUrut || (idx + 1)}</td>
-        <td style="text-align: center;"><code>${st.nisn}</code></td>
+        <td style="text-align: center;"><code>${escapeHtml(st.nisn || '-')}</code></td>
         <td class="col-name">${escapeHtml(st.namaLengkap)}</td>
         ${studentCellsHTML}
         <td style="font-weight: bold; background: #f0fdf4; text-align: center;">${countH}</td>
@@ -4019,7 +4124,7 @@ function renderMonthlyRekapTable() {
             <div class="std-avatar-circle">${st.noUrut || (idx + 1)}</div>
             <div>
               <div style="font-weight: 700; color: #1e293b; font-size: 13.5px;">${escapeHtml(st.namaLengkap)}</div>
-              <div style="font-size: 11px; color: #64748b;">NISN: ${st.nisn} • ${st.jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan'}</div>
+              <div style="font-size: 11px; color: #64748b;">NISN: ${escapeHtml(st.nisn || '-')} • ${st.jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan'}</div>
             </div>
           </div>
           <div style="text-align: right;">
@@ -4085,11 +4190,11 @@ function exportMonthlyRekapCSV() {
 
   const rows = appData.students.map((st, idx) => {
     let countH = 0, countS = 0, countI = 0, countA = 0;
-    const r = [st.noUrut || (idx + 1), `"${st.nisn}"`, `"${st.namaLengkap}"`];
+    const r = [st.noUrut || (idx + 1), `"${st.nisn || '-'}"`, `"${st.namaLengkap}"`];
 
     for (let d = 1; d <= daysInMonth; d++) {
       const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-      const rec = appData.attendance[dateStr] ? appData.attendance[dateStr][st.nisn] : null;
+      const rec = appData.attendance[dateStr] ? getStudentAttendanceRecord(appData.attendance[dateStr], st, idx) : null;
       const status = rec ? rec.status : '-';
       if (status === 'H') countH++;
       if (status === 'S') countS++;
@@ -4145,6 +4250,11 @@ function renderGradesTable() {
   }
 
   const currentGradeData = appData.grades[gradeKey];
+
+  if (appData.students.length === 0) {
+    container.innerHTML = `<div style="text-align: center; padding: 36px 20px; color: var(--text-muted);"><i class="fa-solid fa-users-slash" style="font-size: 24px; margin-bottom: 8px; display: block;"></i>Belum ada data siswa untuk penilaian. Masukkan data di menu <strong>Data Siswa</strong> atau klik <strong>Tarik Data Sheets</strong> di bilah atas.</div>`;
+    return;
+  }
 
   // 1. Build Header
   let thead = '<thead><tr><th rowspan="2" style="width: 35px; text-align: center;">No</th><th rowspan="2" style="width: 85px;">NISN</th><th rowspan="2" class="student-col">Nama Lengkap Siswa</th>';
@@ -4534,6 +4644,11 @@ function renderSemesterGradesView() {
   const gData = appData.grades[gradeKey] || { formatif: {}, sumatif: {}, sas: {} };
 
   tbody.innerHTML = '';
+
+  if (appData.students.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="15" style="text-align: center; padding: 24px; color: var(--text-muted);"><i class="fa-solid fa-users-slash" style="font-size: 20px; display: block; margin-bottom: 8px;"></i>Belum ada data siswa untuk leger nilai. Masukkan data di menu <strong>Data Siswa</strong> atau klik <strong>Tarik Data Sheets</strong>.</td></tr>`;
+    return;
+  }
 
   appData.students.forEach((st, idx) => {
     const fScores = gData.formatif[st.nisn] || {};
@@ -5000,93 +5115,6 @@ function resetAllDataConfirm() {
   }
 }
 
-/**
- * ============================================================================
- * SEED SAMPLE DATA
- * ============================================================================
- */
-function seedSampleAttendance() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const daysInMonth = new Date(year, month, 0).getDate();
-
-  appData.attendance = {};
-
-  for (let d = 1; d <= Math.min(now.getDate(), daysInMonth); d++) {
-    const dObj = new Date(year, month - 1, d);
-    if (dObj.getDay() === 0) continue;
-
-    const dStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-    appData.attendance[dStr] = {};
-
-    sampleStudentsData.forEach((st, idx) => {
-      let status = 'H';
-      let ket = '';
-      if (idx === 2 && d === 5) { status = 'S'; ket = 'Demam dan flu'; }
-      else if (idx === 7 && d === 8) { status = 'I'; ket = 'Acara keluarga'; }
-      else if (idx === 14 && d === 12) { status = 'S'; ket = 'Sakit gigi'; }
-      else if (idx === 21 && d === 14) { status = 'A'; ket = 'Tanpa keterangan'; }
-      appData.attendance[dStr][st.nisn] = { status, ket };
-    });
-  }
-
-  saveToLocalStorage(STORAGE_KEYS.ATTENDANCE);
-}
-
-function seedSampleGrades() {
-  const dynamic = getDynamicAcademicInfo();
-  const semKey = `Bahasa Indonesia_${dynamic.academicYear}_${dynamic.semester}`;
-  appData.grades[semKey] = { formatif: {}, sumatif: {}, sas: {}, finalScores: {} };
-
-  const sampleBaseScores = [88, 85, 92, 78, 82, 90, 75, 94, 86, 80, 89, 91, 79, 83, 95, 87, 81, 76, 93, 84, 88, 82, 90, 85, 78, 92, 86, 84];
-
-  sampleStudentsData.forEach((st, idx) => {
-    const base = sampleBaseScores[idx] || 80;
-    appData.grades[semKey].formatif[st.nisn] = {
-      TP1: Math.min(100, base + (idx % 3)),
-      TP2: Math.min(100, base - (idx % 2)),
-      TP3: Math.min(100, base + (idx % 4) - 2),
-      TP4: Math.min(100, base + (idx % 2))
-    };
-
-    appData.grades[semKey].sumatif[st.nisn] = {
-      LM1: Math.min(100, base + 1),
-      LM2: Math.min(100, base - 1),
-      LM3: Math.min(100, base + 2),
-      LM4: Math.min(100, base),
-      LM5: Math.min(100, base - 2)
-    };
-
-    appData.grades[semKey].sas[st.nisn] = Math.min(100, base + (idx % 5) - 2);
-  });
-
-  saveToLocalStorage(STORAGE_KEYS.GRADES);
-}
-
-function seedSampleArchives() {
-  appData.archives = [
-    {
-      fileId: 'arc_01',
-      fileName: 'Daftar_Hadir_Fisik_Bulan_September_SDN_Kesilir_02.pdf',
-      category: 'Absensi',
-      fileSize: 1245000,
-      uploadDate: '2024-10-01 09:30',
-      driveViewUrl: 'https://drive.google.com',
-      driveDownloadUrl: '#'
-    },
-    {
-      fileId: 'arc_02',
-      fileName: 'Modul_Ajar_IPAS_Kelas_VI_Semester_Ganjil.docx',
-      category: 'Dokumen Pendukung',
-      fileSize: 2450000,
-      uploadDate: '2024-10-05 11:15',
-      driveViewUrl: 'https://drive.google.com',
-      driveDownloadUrl: '#'
-    }
-  ];
-  saveToLocalStorage(STORAGE_KEYS.ARCHIVES);
-}
 
 /**
  * ============================================================================
