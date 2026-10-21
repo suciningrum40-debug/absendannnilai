@@ -1477,11 +1477,6 @@
         <span>Database Spreadsheet</span>
         <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; margin-left: auto; color: #10b981;"></i>
       </a>
-      <a href="https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit" class="nav-item" id="menuAppsScript" target="_blank" onclick="openAppsScriptEditor(event)" title="Buka Google Apps Script Editor">
-        <i class="fa-solid fa-code" style="color: #3b82f6;"></i>
-        <span>Editor Apps Script</span>
-        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; margin-left: auto; color: #3b82f6;"></i>
-      </a>
 
       <div class="nav-label">Sistem</div>
       <a href="#pengaturan" class="nav-item" data-view="pengaturan">
@@ -1514,11 +1509,6 @@
       </div>
 
       <div class="topbar-right">
-        <!-- Direct Apps Script Button -->
-        <a href="https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit" target="_blank" class="btn btn-sm btn-secondary" id="btnOpenGasTopbar" title="Buka Editor Apps Script di Tab Baru" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-          <i class="fa-solid fa-code"></i> <span>Apps Script</span>
-        </a>
-
         <!-- Direct Google Sheets Button -->
         <a href="https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0" target="_blank" class="btn btn-sm btn-success" id="btnOpenSheetTopbar" title="Buka Database Spreadsheet di Tab Baru" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
           <i class="fa-solid fa-table"></i> <span>Buka Google Sheets</span>
@@ -2479,20 +2469,16 @@
             </h4>
 
             <div class="form-group">
-              <label class="form-label">Tautan Google Apps Script Project Editor:</label>
+              <label class="form-label">URL Web App Google Apps Script (Tertanam Otomatis):</label>
               <div style="display: flex; gap: 8px;">
-                <input type="url" id="cfgGasEditorUrl" class="form-control" value="https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit" readonly>
-                <a href="https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit" target="_blank" class="btn btn-secondary" style="flex-shrink: 0; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-                  <i class="fa-solid fa-code"></i> Buka Editor Apps Script
-                </a>
+                <input type="url" id="cfgGasUrl" class="form-control" value="https://script.google.com/macros/s/AKfycbyIAPZiCdZUQa4yrl7bueHds_5aCpv1h5kfxSTclxyrtoCu394QJ19CG0xKwY1NQHjC/exec" readonly style="background-color: var(--card-bg-subtle, #f8fafc); font-family: monospace; font-size: 13px;">
+                <button type="button" class="btn btn-secondary" onclick="navigator.clipboard.writeText(OFFICIAL_GAS_URL); showToast('URL Web App berhasil disalin ke clipboard!', 'info');" title="Salin URL Web App" style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px;">
+                  <i class="fa-regular fa-copy"></i> Salin URL
+                </button>
               </div>
-              <small style="color: var(--text-muted); font-size: 12px; display: block; margin-top: 4px;">Proyek Apps Script aktif untuk backend database Kelas 1 happy.</small>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">URL Web App Google Apps Script Endpoint (.../exec):</label>
-              <input type="url" id="cfgGasUrl" class="form-control" placeholder="https://script.google.com/macros/s/.../exec">
-              <small style="color: var(--text-muted); font-size: 12px; display: block; margin-top: 4px;">Didapatkan setelah klik <strong>Deploy &gt; New deployment &gt; Web app (Anyone)</strong> di editor Apps Script.</small>
+              <small style="color: var(--success, #10b981); font-size: 12px; display: block; margin-top: 4px;">
+                <i class="fa-solid fa-circle-check"></i> Web App Google Apps Script resmi telah tertanam permanen di sistem aplikasi.
+              </small>
             </div>
 
             <div class="form-group">
@@ -2764,9 +2750,9 @@ const STORAGE_KEYS = {
   SPREADSHEET_URL: 'siap_ss_url_v2'
 };
 
-// URL Resmi Google Spreadsheet & Google Apps Script
+// URL Resmi Google Spreadsheet & Google Apps Script (Tertanam)
 const OFFICIAL_SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1M-rqOySIm__WKbC_QT4-ZcUENkfTgXtrChzhakV2B6M/edit?gid=0#gid=0';
-const OFFICIAL_APPS_SCRIPT_URL = 'https://script.google.com/u/0/home/projects/1MWMzYgGE0zUGLyj9FaAoikG5go8gzwSDIgVZXacERl88xiddP_mA_S6R/edit';
+const OFFICIAL_GAS_URL = 'https://script.google.com/macros/s/AKfycbyIAPZiCdZUQa4yrl7bueHds_5aCpv1h5kfxSTclxyrtoCu394QJ19CG0xKwY1NQHjC/exec';
 
 // Default Official Settings SDN Kesilir 02 - Kelas 1 happy
 const defaultSettings = {
@@ -2782,9 +2768,8 @@ const defaultSettings = {
   BOBOT_FORMATIF: 40,
   BOBOT_SUMATIF_LM: 40,
   BOBOT_SUMATIF_SAS: 20,
-  GAS_URL: '',
-  SPREADSHEET_URL: OFFICIAL_SPREADSHEET_URL,
-  APPS_SCRIPT_URL: OFFICIAL_APPS_SCRIPT_URL
+  GAS_URL: OFFICIAL_GAS_URL,
+  SPREADSHEET_URL: OFFICIAL_SPREADSHEET_URL
 };
 
 // Tidak menggunakan data dummy. Data murni berasal dari input pengguna atau Google Sheets.
@@ -2907,20 +2892,10 @@ function initStorage() {
       appData.settings = { ...defaultSettings };
     }
 
-    // Selalu pastikan tautan Google Sheets dan Apps Script terkunci ke URL resmi Kelas 1 happy
+    // Selalu pastikan tautan Google Sheets dan Web App Apps Script tertanam resmi Kelas 1 happy
     appData.settings.SPREADSHEET_URL = OFFICIAL_SPREADSHEET_URL;
-    appData.settings.APPS_SCRIPT_URL = OFFICIAL_APPS_SCRIPT_URL;
+    appData.settings.GAS_URL = OFFICIAL_GAS_URL;
     localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, OFFICIAL_SPREADSHEET_URL);
-
-    // Bersihkan GAS_URL lama jika masih menunjuk ke server lama atau bukan format /exec
-    if (appData.settings.GAS_URL) {
-      if (appData.settings.GAS_URL.includes('AKfycbyYN') ||
-          appData.settings.GAS_URL.includes('/home/projects/') ||
-          appData.settings.GAS_URL.includes('/edit') ||
-          !appData.settings.GAS_URL.includes('/exec')) {
-        appData.settings.GAS_URL = '';
-      }
-    }
 
     // Pastikan nama kelas tersimpan sebagai Kelas 1 happy
     appData.settings.NAMA_KELAS = 'Kelas 1 happy';
@@ -3064,6 +3039,9 @@ async function autoSyncWithGoogleSheets() {
       // 5. Update Settings
       if (result.data.settings && Object.keys(result.data.settings).length > 0) {
         appData.settings = { ...appData.settings, ...result.data.settings };
+        // Kunci kembali URL resmi spreadsheet & Apps Script tertanam
+        appData.settings.SPREADSHEET_URL = OFFICIAL_SPREADSHEET_URL;
+        appData.settings.GAS_URL = OFFICIAL_GAS_URL;
         saveToLocalStorage(STORAGE_KEYS.SETTINGS);
       }
 
@@ -3159,11 +3137,6 @@ function openGoogleSpreadsheet(e) {
 function openDatabaseSheet(e) {
   if (e) e.preventDefault();
   window.open(OFFICIAL_SPREADSHEET_URL, '_blank');
-}
-
-function openAppsScriptEditor(e) {
-  if (e) e.preventDefault();
-  window.open(OFFICIAL_APPS_SCRIPT_URL, '_blank');
 }
 
 function setSyncIndicator(isOnline, text) {
@@ -4891,10 +4864,7 @@ function initSettingsForm() {
   document.getElementById('cfgWeightFormatif').value = s.BOBOT_FORMATIF || 40;
   document.getElementById('cfgWeightSumatifLM').value = s.BOBOT_SUMATIF_LM || 40;
   document.getElementById('cfgWeightSAS').value = s.BOBOT_SUMATIF_SAS || 20;
-  if (document.getElementById('cfgGasEditorUrl')) {
-    document.getElementById('cfgGasEditorUrl').value = OFFICIAL_APPS_SCRIPT_URL;
-  }
-  document.getElementById('cfgGasUrl').value = s.GAS_URL || '';
+  document.getElementById('cfgGasUrl').value = OFFICIAL_GAS_URL;
   document.getElementById('cfgSpreadsheetUrl').value = OFFICIAL_SPREADSHEET_URL;
 
   checkWeights();
@@ -4937,16 +4907,12 @@ function saveSettingsForm() {
   appData.settings.BOBOT_FORMATIF = f;
   appData.settings.BOBOT_SUMATIF_LM = slm;
   appData.settings.BOBOT_SUMATIF_SAS = sas;
-  appData.settings.GAS_URL = document.getElementById('cfgGasUrl').value.trim();
+  appData.settings.GAS_URL = OFFICIAL_GAS_URL;
 
   appData.settings.SPREADSHEET_URL = OFFICIAL_SPREADSHEET_URL;
-  appData.settings.APPS_SCRIPT_URL = OFFICIAL_APPS_SCRIPT_URL;
   localStorage.setItem(STORAGE_KEYS.SPREADSHEET_URL, OFFICIAL_SPREADSHEET_URL);
   if (document.getElementById('cfgSpreadsheetUrl')) {
     document.getElementById('cfgSpreadsheetUrl').value = OFFICIAL_SPREADSHEET_URL;
-  }
-  if (document.getElementById('cfgGasEditorUrl')) {
-    document.getElementById('cfgGasEditorUrl').value = OFFICIAL_APPS_SCRIPT_URL;
   }
 
   saveToLocalStorage(STORAGE_KEYS.SETTINGS);
